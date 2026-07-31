@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Glow & Co. Salon</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Common CSS (from template) -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style2.css">
+    <style>
+        /* About Page Specific Styles */
+        :root {
+            --primary: #c4a27a;
+            --primary-dark: #a88560;
+            --primary-light: #e5d3c1;
+            --dark: #1a1a1a;
+            --light: #fdf8f5;
+        }
+
+        .about-hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a241e 100%);
+            color: white;
+            padding: 120px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(196,162,122,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: rotate 20s linear infinite;
+        }
+
+        .about-hero h1 {
+            font-size: 64px;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-hero p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Journey Section (milestones) */
+        .journey-section {
+            padding: 100px 80px;
+            background: white;
+        }
+
+        .journey-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .milestone-card {
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--light);
+            border-radius: 30px;
+            transition: all 0.3s;
+            border: 1px solid rgba(196,162,122,0.1);
+        }
+
+        .milestone-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 50px rgba(196,162,122,0.15);
+            background: white;
+        }
+
+        .milestone-year {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: 'Playfair Display', serif;
+            line-height: 1;
+            margin-bottom: 15px;
+        }
+
+        .milestone-icon {
+            font-size: 32px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .milestone-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .milestone-card p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Story Section */
+        .story-section {
+            padding: 100px 80px;
+            background: var(--light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .story-container {
+            display: flex;
+            align-items: center;
+            gap: 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .story-image {
+            flex: 1;
+            position: relative;
+        }
+
+        .story-image img {
+            width: 100%;
+            border-radius: 30px;
+            box-shadow: 30px 30px 60px rgba(0,0,0,0.1);
+        }
+
+        .story-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 200px;
+            height: 200px;
+            background: var(--primary);
+            opacity: 0.1;
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .founder-quote {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(196,162,122,0.2);
+            max-width: 250px;
+        }
+
+        .founder-quote i {
+            color: var(--primary);
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .founder-quote p {
+            font-style: italic;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .founder-quote span {
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .story-content {
+            flex: 1;
+        }
+
+        .story-content h2 {
+            font-size: 42px;
+            margin-bottom: 30px;
+            font-family: 'Playfair Display', serif;
+            position: relative;
+        }
+
+        .story-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 3px;
+        }
+
+        .story-content p {
+            color: #666;
+            line-height: 1.9;
+            margin-bottom: 25px;
+            font-size: 16px;
+        }
+
+        .signature-block {
+            margin-top: 30px;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--primary);
+            font-size: 24px;
+            border-left: 3px solid var(--primary);
+            padding-left: 20px;
+        }
+
+        /* Values Section */
+        .values-section {
+            padding: 100px 80px;
+            background: white;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .value-card {
+            background: var(--light);
+            border-radius: 30px;
+            padding: 50px 30px;
+            text-align: center;
+            transition: all 0.3s;
+            border-bottom: 5px solid transparent;
+        }
+
+        .value-card:hover {
+            border-bottom-color: var(--primary);
+            transform: translateY(-10px);
+            box-shadow: 0 30px 50px rgba(196,162,122,0.1);
+        }
+
+        .value-icon {
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 40px;
+            color: var(--primary);
+            box-shadow: 0 20px 30px rgba(196,162,122,0.15);
+            transition: all 0.3s;
+        }
+
+        .value-card:hover .value-icon {
+            background: var(--primary);
+            color: white;
+            transform: rotate(360deg);
+        }
+
+        .value-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .value-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Team Section */
+        .team-section {
+            padding: 100px 80px;
+            background: var(--light);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            transition: all 0.3s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 50px rgba(196,162,122,0.2);
+        }
+
+        .team-image {
+            height: 280px;
+            background: #e0d6cf;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 64px;
+            color: white;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        }
+
+        .team-content {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .team-content h3 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .team-role {
+            color: var(--primary);
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .team-experience {
+            color: #666;
+            font-size: 13px;
+        }
+
+        .team-social {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .team-social a {
+            width: 35px;
+            height: 35px;
+            background: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            transition: all 0.3s;
+        }
+
+        .team-social a:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Awards Section */
+        .awards-section {
+            padding: 100px 80px;
+            background: white;
+        }
+
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .award-item {
+            text-align: center;
+            padding: 30px 20px;
+            background: var(--light);
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        .award-item:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .award-item:hover i,
+        .award-item:hover p {
+            color: white;
+        }
+
+        .award-item i {
+            font-size: 40px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .award-item h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .award-item p {
+            font-size: 13px;
+            color: #888;
+        }
+
+        @media (max-width: 1024px) {
+            .journey-grid,
+            .values-grid,
+            .team-grid,
+            .awards-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .about-hero h1 { font-size: 42px; }
+            .journey-section,
+            .story-section,
+            .values-section,
+            .team-section,
+            .awards-section { padding: 60px 20px; }
+            
+            .story-container {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .founder-quote {
+                position: static;
+                margin-top: 20px;
+            }
+            
+            .journey-grid,
+            .values-grid,
+            .team-grid,
+            .awards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation (consistent with template) -->
+    <nav>
+        <div class="logo">Glow<span>&Co.</span></div>
+        <div class="nav-links">
+            <a href="home.html">Home</a>
+            <a href="servic.html">Services</a>
+            <a href="Franchise.html">Franchise</a>
+            <a href="Academy.html">Academy</a>
+            <a href="Contact%20(2).html">Contact</a>
+            <a href="about.html" class="active">About</a>
+        </div>
+        <button class="book-btn" onclick="window.location.href='book.html'">Book Appointment</button>
+    </nav>
+
+    <!-- About Hero -->
+    <section class="about-hero">
+        <h1>Our Story of Beauty</h1>
+        <p>25 years of redefining elegance, one client at a time. Discover the passion behind Glow & Co.</p>
+    </section>
+
+    <!-- Journey Milestones -->
+    <section class="journey-section">
+        <div class="section-title">
+            <h2>Our Journey</h2>
+            <p>Milestones that shaped us</p>
+        </div>
+        <div class="journey-grid">
+            <div class="milestone-card">
+                <div class="milestone-year">1998</div>
+                <div class="milestone-icon"><i class="fas fa-seedling"></i></div>
+                <h3>The Beginning</h3>
+                <p>First salon opened in Chennai with a vision to bring luxury beauty to every client.</p>
+            </div>
+            <div class="milestone-card">
+                <div class="milestone-year">2005</div>
+                <div class="milestone-icon"><i class="fas fa-store"></i></div>
+                <h3>First Expansion</h3>
+                <p>Opened 5 new locations across Tamil Nadu, becoming a trusted local name.</p>
+            </div>
+            <div class="milestone-card">
+                <div class="milestone-year">2012</div>
+                <div class="milestone-icon"><i class="fas fa-trophy"></i></div>
+                <h3>Award Winning</h3>
+                <p>Received 'Best Salon Chain - South India' award for excellence.</p>
+            </div>
+            <div class="milestone-card">
+                <div class="milestone-year">2024</div>
+                <div class="milestone-icon"><i class="fas fa-map-marked-alt"></i></div>
+                <h3>Pan-India Presence</h3>
+                <p>1000+ salons across 12+ cities, serving over 50 lakh happy clients.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story & Founder Section -->
+    <section class="story-section">
+        <div class="story-container">
+            <div class="story-image">
+                <img src="https://images.unsplash.com/photo-1600948836101-f9ff52b1c9c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Founder">
+                <div class="founder-quote">
+                    <i class="fas fa-quote-left"></i>
+                    <p>Beauty is not just about how you look, but how you feel. We exist to make every client feel extraordinary.</p>
+                    <span>- Meera Iyer, Founder</span>
+                </div>
+            </div>
+            <div class="story-content">
+                <h2>From a Dream to a Legacy</h2>
+                <p>In 1998, Meera Iyer started Glow & Co. with a single chair and a big dream – to create a space where science meets art, and every client leaves feeling more confident than they arrived. What began as a small salon in Chennai has grown into a pan-India brand, but our philosophy remains unchanged: treat every client like family, and never compromise on quality.</p>
+                <p>Today, our team of over 5,000 professionals carries forward that legacy, blending international techniques with personalized care. We don't just offer services; we craft experiences.</p>
+                <div class="signature-block">
+                    <i class="fas fa-feather-alt"></i> With passion, The Glow & Co. Family
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values -->
+    <section class="values-section">
+        <div class="section-title">
+            <h2>Our Core Values</h2>
+            <p>Principles that guide us every day</p>
+        </div>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon"><i class="fas fa-heart"></i></div>
+                <h3>Client First</h3>
+                <p>Your satisfaction and comfort are at the heart of everything we do. We listen, we understand, we deliver.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon"><i class="fas fa-gem"></i></div>
+                <h3>Uncompromising Quality</h3>
+                <p>Only the finest products and techniques. We never cut corners when it comes to your well-being.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon"><i class="fas fa-leaf"></i></div>
+                <h3>Continuous Learning</h3>
+                <p>From international training to in-house workshops, we constantly evolve to bring you the best.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Team -->
+    <section class="team-section">
+        <div class="section-title">
+            <h2>Meet Our Leaders</h2>
+            <p>The visionaries behind the brand</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-image"><i class="fas fa-user-tie"></i></div>
+                <div class="team-content">
+                    <h3>Mr.K.Raja</h3>
+                    <div class="team-role">Founder & Chairperson</div>
+                    <div class="team-experience">25+ years • Visionary</div>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="team-card">
+                <div class="team-image"><i class="fas fa-user"></i></div>
+                <div class="team-content">
+                    <h3>Mr.R.Kavin</h3>
+                    <div class="team-role">CEO</div>
+                    <div class="team-experience">18+ years • Strategy</div>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="team-card">
+                <div class="team-image"><i class="fas fa-user-nurse"></i></div>
+                <div class="team-content">
+                    <h3>Rohan Khanna</h3>
+                    <div class="team-role">Head of R&D</div>
+                    <div class="team-experience">15+ years • Dermatology</div>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="team-card">
+                <div class="team-image"><i class="fas fa-user-graduate"></i></div>
+                <div class="team-content">
+                    <h3>Vikram Shetty</h3>
+                    <div class="team-role">Creative Director</div>
+                    <div class="team-experience">20+ years • Hair & Makeup</div>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards & Recognition -->
+    <section class="awards-section">
+        <div class="section-title">
+            <h2>Awards & Recognition</h2>
+            <p>Our commitment to excellence has been recognized</p>
+        </div>
+        <div class="awards-grid">
+            <div class="award-item">
+                <i class="fas fa-award"></i>
+                <h4>Best Salon Chain</h4>
+                <p>South India 2023</p>
+            </div>
+            <div class="award-item">
+                <i class="fas fa-star"></i>
+                <h4>Client Choice Award</h4>
+                <p>Beauty & You 2022</p>
+            </div>
+            <div class="award-item">
+                <i class="fas fa-medal"></i>
+                <h4>Innovation in Beauty</h4>
+                <p>National Awards 2021</p>
+            </div>
+            <div class="award-item">
+                <i class="fas fa-trophy"></i>
+                <h4>Top 10 Salons</h4>
+                <p>India Today 2024</p>
+            </div>
+            <div class="award-item">
+                <i class="fas fa-certificate"></i>
+                <h4>ISO Certified</h4>
+                <p>Quality Management</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (consistent with template) -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Glow<span>&Co.</span></h3>
+                <p>Redefining beauty with elegance and expertise since 1998.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="home.html">Home</a>
+                <a href="servic.html">Services</a>
+                <a href="Franchise.html">Franchise</a>
+                <a href="Academy.html">Academy</a>
+                <a href="Contact%20(2).html">Contact</a>
+                <a href="about.html">About</a>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <a href="#">FAQs</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Refund Policy</a>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                <p><i class="fas fa-envelope"></i> hello@glowandco.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Chennai, India</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Glow & Co. Salon. All rights reserved. | College Project</p>
+        </div>
+    </footer>
+
+    <!-- Chat Widget & Loader (consistent with template) -->
+    <div class="chat-widget">
+        <i class="fas fa-comment"></i>
+        <span class="chat-tooltip">We're here to help!</span>
+    </div>
+    <div class="loader"></div>
+
+    <!-- Optional JS for interactivity -->
+    <script src="scrpit.js"></script>
+    <script>
+        // Simple loader hide (if needed)
+        window.addEventListener('load', function() {
+            document.querySelector('.loader')?.classList.add('hide');
+        });
+    </script>
+</body>
+</html>

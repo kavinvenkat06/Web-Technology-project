@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | RR. Saloon</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="style2.css">
+    <style>
+        /* Home Page Specific Enhanced Styles */
+        :root {
+            --primary: #c4a27a;
+            --primary-dark: #a88560;
+            --primary-light: #e5d3c1;
+            --secondary: #4a4a4a;
+            --dark: #1a1a1a;
+            --light: #fdf8f5;
+            --white: #ffffff;
+            --shadow-sm: 0 5px 20px rgba(0,0,0,0.05);
+            --shadow-md: 0 15px 30px rgba(196,162,122,0.15);
+            --shadow-lg: 0 30px 60px rgba(196,162,122,0.2);
+            --gradient: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        }
+
+        /* Hero Section Enhanced */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 80px;
+            background: linear-gradient(135deg, #fff5f0 0%, #fff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(196,162,122,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: rotate 20s linear infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(196,162,122,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: rotate 15s linear infinite reverse;
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 600px;
+            z-index: 2;
+        }
+
+        .hero-content h5 {
+            color: var(--primary);
+            letter-spacing: 6px;
+            font-size: 14px;
+            margin-bottom: 15px;
+            animation: slideInLeft 0.8s ease;
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-content h5::before,
+        .hero-content h5::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 30px;
+            height: 1px;
+            background: var(--primary);
+        }
+
+        .hero-content h5::before {
+            right: -40px;
+        }
+
+        .hero-content h5::after {
+            left: -40px;
+        }
+
+        .hero-content h1 {
+            font-size: 72px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            animation: slideInLeft 0.8s ease 0.1s both;
+            font-weight: 700;
+        }
+
+        .hero-content h1 i {
+            color: var(--primary);
+            font-style: normal;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        .hero-content h1 i::after {
+            content: '';
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            width: 100%;
+            height: 12px;
+            background: rgba(196,162,122,0.2);
+            z-index: -1;
+            border-radius: 10px;
+        }
+
+        .hero-content p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            animation: slideInLeft 0.8s ease 0.2s both;
+            max-width: 500px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 50px;
+            margin: 40px 0;
+            animation: slideInLeft 0.8s ease 0.3s both;
+        }
+
+        .stat-item {
+            text-align: center;
+            position: relative;
+        }
+
+        .stat-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 2px;
+            height: 40px;
+            background: linear-gradient(to bottom, transparent, var(--primary), transparent);
+        }
+
+        .stat-number {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: 'Playfair Display', serif;
+            display: block;
+            line-height: 1;
+            margin-bottom: 5px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .stat-number::after {
+            content: '+';
+            font-size: 24px;
+            position: absolute;
+            top: 0;
+            right: -15px;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: #888;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            animation: slideInLeft 0.8s ease 0.4s both;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            padding: 16px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(196,162,122,0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            border: none;
+            display: inline-block;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+            z-index: -1;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(196,162,122,0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #333;
+            padding: 16px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 2px solid var(--primary);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-secondary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: var(--gradient);
+            transition: width 0.3s;
+            z-index: -1;
+        }
+
+        .btn-secondary:hover::before {
+            width: 100%;
+        }
+
+        .btn-secondary:hover {
+            color: white;
+            border-color: transparent;
+        }
+
+        /* Enhanced Hero Image with Floating Animation */
+        .hero-image {
+            flex: 1;
+            position: relative;
+            z-index: 2;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 550px;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            box-shadow: -30px 30px 50px rgba(0,0,0,0.15);
+            transition: all 0.5s;
+            filter: brightness(1.02) contrast(1.02);
+        }
+
+        .hero-image:hover img {
+            transform: scale(1.02) rotate(2deg);
+            box-shadow: -40px 40px 60px rgba(196,162,122,0.3);
+        }
+
+        /* Floating Cards Animation */
+        .floating-card {
+            position: absolute;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 30px;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border: 1px solid rgba(255,255,255,0.5);
+            animation: floatCard 5s ease-in-out infinite;
+        }
+
+        .floating-card:nth-child(2) {
+            bottom: 50px;
+            left: -30px;
+            animation-delay: 0s;
+        }
+
+        .floating-card:nth-child(3) {
+            top: 50px;
+            right: -30px;
+            animation: floatCard 7s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+
+        .floating-card:nth-child(4) {
+            top: 30%;
+            right: -20px;
+            animation: floatCard 4s ease-in-out infinite;
+            animation-delay: 2s;
+        }
+
+        .card-icon {
+            width: 55px;
+            height: 55px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 10px 20px rgba(196,162,122,0.3);
+        }
+
+        /* Enhanced Features Section with 3D Cards */
+        .features-showcase {
+            padding: 100px 80px;
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .features-showcase::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(196,162,122,0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: rotate 30s linear infinite;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 50px 20px;
+            background: var(--light);
+            border-radius: 30px;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(196,162,122,0.1);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .feature-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transition: transform 0.4s;
+            transform-origin: left;
+        }
+
+        .feature-item:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-item:hover {
+            transform: translateY(-15px) rotateX(5deg);
+            background: white;
+            box-shadow: 0 30px 50px rgba(196,162,122,0.2);
+            border-color: transparent;
+        }
+
+        .feature-icon {
+            width: 90px;
+            height: 90px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 36px;
+            color: var(--primary);
+            box-shadow: 0 15px 30px rgba(196,162,122,0.15);
+            transition: all 0.4s;
+            position: relative;
+        }
+
+        .feature-icon::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            background: linear-gradient(135deg, var(--primary), transparent) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .feature-item:hover .feature-icon::after {
+            opacity: 1;
+        }
+
+        .feature-item:hover .feature-icon {
+            transform: scale(1.1) rotate(360deg);
+            background: var(--gradient);
+            color: white;
+        }
+
+        .feature-item h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+
+        .feature-item:hover h3 {
+            color: var(--primary);
+        }
+
+        .feature-item p {
+            color: #888;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        /* Enhanced Welcome Section with Parallax Effect */
+        .welcome-section {
+            padding: 100px 80px;
+            background: linear-gradient(135deg, var(--light) 0%, #fff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-container {
+            display: flex;
+            align-items: center;
+            gap: 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .welcome-image {
+            flex: 1;
+            position: relative;
+            animation: slideInRight 1s ease;
+        }
+
+        .welcome-image img {
+            width: 100%;
+            border-radius: 30px;
+            box-shadow: 30px 30px 60px rgba(0,0,0,0.1);
+            transition: all 0.5s;
+            position: relative;
+            z-index: 2;
+        }
+
+        .welcome-image:hover img {
+            transform: scale(1.02) translate(-5px, -5px);
+            box-shadow: 40px 40px 70px rgba(196,162,122,0.2);
+        }
+
+        .experience-badge {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            background: var(--gradient);
+            color: white;
+            padding: 35px;
+            border-radius: 50%;
+            width: 180px;
+            height: 180px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-shadow: 0 30px 50px rgba(196,162,122,0.3);
+            animation: pulse 3s ease-in-out infinite;
+            z-index: 3;
+        }
+
+        .experience-badge .years {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+
+        .experience-badge span:last-child {
+            font-size: 14px;
+            opacity: 0.9;
+            letter-spacing: 1px;
+        }
+
+        .welcome-content {
+            flex: 1;
+            animation: slideInLeft 1s ease;
+        }
+
+        .welcome-content h3 {
+            font-size: 42px;
+            margin-bottom: 25px;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+        }
+
+        .welcome-content h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: var(--gradient);
+            border-radius: 3px;
+        }
+
+        .welcome-content p {
+            color: #666;
+            line-height: 1.9;
+            margin-bottom: 25px;
+            font-size: 16px;
+        }
+
+        .signature {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: var(--primary);
+            font-style: italic;
+            position: relative;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .signature::before {
+            content: '“';
+            font-size: 60px;
+            color: var(--primary-light);
+            position: absolute;
+            left: -30px;
+            top: -20px;
+            opacity: 0.5;
+        }
+
+        /* Animated Background Elements */
+        .floating-shape {
+            position: absolute;
+            background: var(--gradient);
+            opacity: 0.05;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            top: -100px;
+            left: -100px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            bottom: -50px;
+            right: -50px;
+            animation: float 6s ease-in-out infinite reverse;
+        }
+
+        .shape-3 {
+            width: 150px;
+            height: 150px;
+            top: 50%;
+            left: 20%;
+            animation: float 10s ease-in-out infinite;
+        }
+
+        /* Enhanced Animations */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-30px) rotate(5deg);
+            }
+        }
+
+        @keyframes floatCard {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            50% {
+                transform: translateY(-15px) translateX(10px);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 30px 50px rgba(196,162,122,0.3);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 40px 60px rgba(196,162,122,0.4);
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(196,162,122,0.3);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(196,162,122,0.6);
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 100px 40px 40px;
+                min-height: auto;
+            }
+
+            .hero-content h5::before,
+            .hero-content h5::after {
+                display: none;
+            }
+
+            .hero-content p {
+                margin: 0 auto 30px;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .stat-item:not(:last-child)::after {
+                display: none;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .floating-card:nth-child(3),
+            .floating-card:nth-child(4) {
+                display: none;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 48px;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .welcome-container {
+                flex-direction: column;
+                gap: 50px;
+            }
+
+            .experience-badge {
+                width: 150px;
+                height: 150px;
+                padding: 25px;
+                bottom: -15px;
+                right: -15px;
+            }
+
+            .experience-badge .years {
+                font-size: 36px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 80px 20px 40px;
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .hero-stats {
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+
+            .stat-item {
+                flex: 1 1 calc(50% - 20px);
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                text-align: center;
+                padding: 14px 30px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .welcome-content h3 {
+                font-size: 32px;
+            }
+
+            .floating-card:nth-child(2) {
+                left: 50%;
+                transform: translateX(-50%);
+                bottom: -20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Background Shapes -->
+    <div class="floating-shape shape-1"></div>
+    <div class="floating-shape shape-2"></div>
+    <div class="floating-shape shape-3"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Glow<span>&Co.</span></div>
+        <div class="nav-links">
+            <a href="home.html" class="active">Home</a>
+            <a href="servic.html">Services</a>
+            <a href="Franchise.html">Franchise</a>
+            <a href="Academy.html">Academy</a>
+            <a href="Contact (2).html">Contact</a>
+            <a href="about.html">About</a>
+        </div>
+        <button class="book-btn" onclick="window.location.href='book.html'">Book Appointment</button>
+    </nav>
+
+    <!-- Hero Section with Multiple Floating Cards -->
+    <section class="hero">
+        <div class="hero-content">
+            <h5>WELCOME TO LUXURY</h5>
+            <h1>Where Beauty Meets <i>Elegance</i></h1>
+            <p>Step into a world of luxury and transformation. With 25 years of excellence, we bring out the most beautiful version of you.</p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">25</span>
+                    <span class="stat-label">Years</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">1000</span>
+                    <span class="stat-label">Salons</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">50</span>
+                    <span class="stat-label">Happy Clients</span>
+                </div>
+            </div>
+            <div class="hero-buttons">
+                <a href="servic.html" class="btn-primary">Explore Services</a>
+                <a href="contact (2).html" class="btn-secondary">Book Now</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Salon">
+            <div class="floating-card">
+                <div class="card-icon"><i class="fas fa-star"></i></div>
+                <div>
+                    <strong>Premium Service</strong>
+                    <p style="font-size: 12px; margin: 0;">5-Star Experience</p>
+                </div>
+            </div>
+            <div class="floating-card">
+                <div class="card-icon"><i class="fas fa-medal"></i></div>
+                <div>
+                    <strong>Award Winning</strong>
+                    <p style="font-size: 12px; margin: 0;">Best Salon 2024</p>
+                </div>
+            </div>
+            <div class="floating-card">
+                <div class="card-icon"><i class="fas fa-users"></i></div>
+                <div>
+                    <strong>Expert Team</strong>
+                    <p style="font-size: 12px; margin: 0;">50+ Professionals</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Showcase with 3D Cards -->
+    <section class="features-showcase">
+        <div class="section-title">
+            <h2>Why Choose Us</h2>
+            <p>Experience the difference of excellence</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fas fa-calendar-check"></i></div>
+                <h3>25+ Years</h3>
+                <p>Industry expertise</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fas fa-store"></i></div>
+                <h3>1000+ Salons</h3>
+                <p>Pan India presence</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fas fa-gem"></i></div>
+                <h3>Premium Quality</h3>
+                <p>Uncompromised</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fas fa-star"></i></div>
+                <h3>Expert Stylists</h3>
+                <p>Internationally trained</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <h3>Accessible</h3>
+                <p>Convenient locations</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Welcome Section with Parallax Effect -->
+    <section class="welcome-section">
+        <div class="welcome-container">
+            <div class="welcome-image">
+                <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Salon Interior">
+                <div class="experience-badge">
+                    <span class="years">25</span>
+                    <span>Years of Excellence</span>
+                </div>
+            </div>
+            <div class="welcome-content">
+                <h3>Welcome to Glow & Co.</h3>
+                <p>We believe that beauty is an art form. Our team of expert stylists and beauty professionals are dedicated to providing you with a luxurious experience that goes beyond just looking good – it's about feeling confident, beautiful, and empowered.</p>
+                <p>From precision haircuts to rejuvenating facials, every service is tailored to your unique needs using only the finest products.</p>
+                <div class="signature">- Founders</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Glow<span>&Co.</span></h3>
+                <p>Redefining beauty with elegance and expertise since 1998.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="home.html">Home</a>
+                <a href="servic.html">Services</a>
+                <a href="Franchise.html">Franchise</a>
+                <a href="Academy.html">Academy</a>
+                <a href="Contact (2).html">Contact</a>
+                <a href="about.html">About</a>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <a href="services.html#hair">Hair Styling</a>
+                <a href="services.html#skin">Skin Care</a>
+                <a href="services.html#bridal">Bridal</a>
+                <a href="services.html#spa">Spa</a>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                <p><i class="fas fa-envelope"></i> hello@glowandco.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Chennai, India</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Glow & Co. Salon. All rights reserved. | College Project</p>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget">
+        <i class="fas fa-comment"></i>
+        <span class="chat-tooltip">Need help? Chat with us!</span>
+    </div>
+
+    <!-- Simple Loader -->
+    <div class="loader"></div>
+    
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Franchise | Glow & Co. Salon</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style2.css">
+    <style>
+        .franchise-hero {
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1600948836101-f9ff52b1c9c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 150px 20px;
+        }
+
+        .franchise-hero h1 {
+            font-size: 64px;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .franchise-hero p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+            animation: fadeInUp 0.8s ease 0.1s both;
+        }
+
+        .opportunity-section {
+            padding: 100px 80px;
+            background: white;
+        }
+
+        .opportunity-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .opportunity-card {
+            background: #fdf8f5;
+            border-radius: 30px;
+            padding: 50px 30px;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .opportunity-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #c4a27a, #e5d3c1);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .opportunity-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .opportunity-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 50px rgba(196,162,122,0.15);
+        }
+
+        .card-icon-large {
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            font-size: 40px;
+            color: #c4a27a;
+            box-shadow: 0 20px 30px rgba(196,162,122,0.2);
+        }
+
+        .opportunity-card h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .opportunity-card p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .stats-section {
+            background: linear-gradient(135deg, #c4a27a, #a88560);
+            color: white;
+            padding: 80px;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-block {
+            text-align: center;
+        }
+
+        .stat-block .number {
+            font-size: 48px;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .stat-block .label {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .investment-section {
+            padding: 100px 80px;
+            background: #fdf8f5;
+        }
+
+        .investment-container {
+            display: flex;
+            gap: 60px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .investment-info {
+            flex: 1;
+        }
+
+        .investment-info h2 {
+            font-size: 42px;
+            margin-bottom: 30px;
+        }
+
+        .investment-features {
+            list-style: none;
+        }
+
+        .investment-features li {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .investment-features i {
+            color: #c4a27a;
+            font-size: 20px;
+            width: 30px;
+        }
+
+        .roi-box {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            margin-top: 30px;
+        }
+
+        .roi-box h4 {
+            font-size: 24px;
+            color: #c4a27a;
+            margin-bottom: 10px;
+        }
+
+        .investment-card {
+            flex: 1;
+            background: white;
+            border-radius: 30px;
+            padding: 50px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .investment-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200px;
+            height: 200px;
+            background: rgba(196,162,122,0.1);
+            border-radius: 50%;
+        }
+
+        .price-tag {
+            font-size: 56px;
+            font-weight: 700;
+            color: #c4a27a;
+            margin: 30px 0;
+        }
+
+        .testimonial-franchise {
+            padding: 100px 80px;
+            background: white;
+        }
+
+        .franchisee-story {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            background: #fdf8f5;
+            border-radius: 50px;
+            padding: 60px;
+        }
+
+        .story-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: #c4a27a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            color: white;
+        }
+
+        .story-content {
+            flex: 1;
+        }
+
+        .story-content h3 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .story-content p {
+            color: #666;
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        .form-section {
+            padding: 100px 80px;
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            color: white;
+        }
+
+        .franchise-form {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.1);
+            padding: 60px;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.9);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: #c4a27a;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #a88560;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(196,162,122,0.3);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .opportunity-grid,
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .investment-container {
+                flex-direction: column;
+            }
+            .franchisee-story {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Glow<span>&Co.</span></div>
+        <div class="nav-links">
+            <a href="home.html">Home</a>
+            <a href="servic.html">Services</a>
+            <a href="Franchise.html" class="active">Franchise</a>
+            <a href="Academy.html">Academy</a>
+            <a href="Contact (2).html">Contact</a>
+            <a href="about.html">About</a>
+        </div>
+        <button class="book-btn" onclick="window.location.href='book.html'">Book Appointment</button>
+    </nav>
+
+    <section class="franchise-hero">
+        <h1>Own a Glow & Co. Salon</h1>
+        <p>Join India's fastest-growing beauty salon chain with 1000+ successful outlets</p>
+    </section>
+
+    <section class="opportunity-section">
+        <div class="section-title">
+            <h2>Franchise Opportunities</h2>
+            <p>Choose your path to success</p>
+        </div>
+        <div class="opportunity-grid">
+            <div class="opportunity-card">
+                <div class="card-icon-large"><i class="fas fa-female"></i></div>
+                <h3>Womenpreneur</h3>
+                <p>Special program for women entrepreneurs with exclusive benefits and mentorship. Join a community of 500+ successful women business owners.</p>
+                <ul style="text-align: left; color: #666; margin-top: 20px;">
+                    <li><i class="fas fa-check" style="color: #c4a27a;"></i> Lower investment</li>
+                    <li><i class="fas fa-check" style="color: #c4a27a;"></i> Mentorship program</li>
+                    <li><i class="fas fa-check" style="color: #c4a27a;"></i> Flexible terms</li>
+                </ul>
+            </div>
+            <div class="opportunity-card">
+                <div class="card-icon-large"><i class="fas fa-store"></i></div>
+                <h3>Standard Franchise</h3>
+                <p>Complete salon setup with full brand support, training, and marketing assistance. Perfect for experienced entrepreneurs.</p>
+                <ul style="text-align: left; color: #666; margin-top: 20px;">
+                    <li><i class="fas fa-check" style="color: #c4a27a;"></i> 1000+ sq ft space</li>
+                    <li><i class="fas fa-check" style="color: #c4a27a;"></i> Full staff training</li>
+                    <li><i class="fas fa-check" style="color: #c4a27a;"></i> Marketing support</li>
+                </ul>
+            </div>
+            <div class="opportunity-card">
+                <div class="card-icon-large"><i class="fas fa-crown"></i></div>
+                <h3>Master Franchise</h3>
+                <p>Exclusive rights for a city/region. Be the master franchisee and open multiple outlets.</p>
+                <ul style="text-align: left; color: #666; margin-top: 20px;">
+                    <li><i class="fas fa-check" style="color: #c4a27a;"></i> Territory rights</li>
+                    <li><i class="fas fa-check" style="color: #c4a27a;"></i> Higher ROI potential</li>
+                    <li><i class="fas fa-check" style="color: #c4a27a;"></i> Multiple units</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-block">
+                <span class="number">25+</span>
+                <span class="label">Years Experience</span>
+            </div>
+            <div class="stat-block">
+                <span class="number">1000+</span>
+                <span class="label">Salons</span>
+            </div>
+            <div class="stat-block">
+                <span class="number">500+</span>
+                <span class="label">Womenpreneurs</span>
+            </div>
+            <div class="stat-block">
+                <span class="number">36-48</span>
+                <span class="label">Months ROI</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="investment-section">
+        <div class="investment-container">
+            <div class="investment-info">
+                <h2>Investment Details</h2>
+                <ul class="investment-features">
+                    <li><i class="fas fa-rupee-sign"></i> <strong>Investment Range:</strong> ₹25 - ₹40 Lakhs</li>
+                    <li><i class="fas fa-building"></i> <strong>Space Required:</strong> 800 - 1200 sq ft</li>
+                    <li><i class="fas fa-users"></i> <strong>Staff Required:</strong> 8-12 members</li>
+                    <li><i class="fas fa-chart-line"></i> <strong>Expected ROI:</strong> 36-48 months</li>
+                    <li><i class="fas fa-percent"></i> <strong>Royalty:</strong> 8% of monthly revenue</li>
+                </ul>
+                <div class="roi-box">
+                    <h4>Proven Business Model</h4>
+                    <p>Our franchisees achieve break-even within 2 years with our systematic approach and operational excellence.</p>
+                </div>
+            </div>
+            <div class="investment-card">
+                <h3>Quick Returns</h3>
+                <div class="price-tag">36-48</div>
+                <p style="font-size: 18px;">Months to ROI</p>
+                <p style="color: #666; margin: 20px 0;">Industry-leading return on investment with complete operational support</p>
+                <button class="btn-primary" style="width: 100%;" onclick="document.querySelector('.form-section').scrollIntoView({behavior: 'smooth'})">Apply Now</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonial-franchise">
+        <div class="franchisee-story">
+            <div class="story-image">
+                <i class="fas fa-quote-right"></i>
+            </div>
+            <div class="story-content">
+                <h3>From Employee to Owner</h3>
+                <p>"I started as a stylist at Glow & Co. 10 years ago. Today, I own 3 successful franchises. The support system and training made it possible for me to achieve my dream of being a business owner. It's not just a franchise; it's a family."</p>
+                <p style="margin-top: 20px;"><strong>- Priya Sharma</strong>, Franchisee since 2018</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="form-section">
+        <div class="franchise-form">
+            <h2 style="color: white; margin-bottom: 30px;">Apply for Franchise</h2>
+            <form id="franchiseForm">
+                <div class="form-group">
+                    <input type="text" placeholder="Full Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" placeholder="Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="City" required>
+                </div>
+                <div class="form-group">
+                    <select required>
+                        <option value="">Select Investment Range</option>
+                        <option>₹25-30 Lakhs</option>
+                        <option>₹30-35 Lakhs</option>
+                        <option>₹35-40 Lakhs</option>
+                        <option>Above ₹40 Lakhs</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="Tell us about yourself and why you want to join Glow & Co."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Submit Application</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <!-- Same footer as before -->
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Glow & Co.</h3>
+                <p>Redefining beauty with elegance and expertise since 1998.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="home.html">Home</a>
+                <a href="servic.html">Services</a>
+                <a href="Franchise.html">Franchise</a>
+                <a href="Academy.html">Academy</a>
+                <a href="about.html">About</a>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <a href="contact.html">Contact</a>
+                <a href="#">FAQs</a>
+                <a href="#">Terms</a>
+                <a href="#">Privacy</a>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                <p><i class="fas fa-envelope"></i> franchise@glowandco.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Chennai, India</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Glow & Co. Salon. All rights reserved. | College Project</p>
+        </div>
+    </footer>
+
+    <div class="chat-widget">
+        <i class="fas fa-comment"></i>
+        <span class="chat-tooltip">Franchise queries? Chat now!</span>
+    </div>
+
+    <script>
+        document.getElementById('franchiseForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your interest! Our franchise team will contact you within 24 hours.');
+        });
+    </script>
+    <!-- Add custom cursor elements -->
+<div class="cursor"></div>
+<div class="cursor-dot"></div>
+
+<!-- Add loader -->
+<div class="loader">
+    <div class="loader-content">
+        <div class="loader-logo">Glow<span>&Co.</span></div>
+        <div class="loader-spinner"></div>
+    </div>
+</div>
+
+<!-- Before closing body tag, add this -->
+<div class="loader"></div>
+<script src="scrpit.js"></script>
+</body>
+</html>

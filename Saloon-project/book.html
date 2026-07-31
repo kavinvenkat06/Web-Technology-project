@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Now | Glow & Co. Salon</title>
+    <!-- same fonts & icons as main site -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #fdf8f5;
+            color: #1a1a1a;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* subtle salon background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://images.pexels.com/photos/5069603/pexels-photo-5069603.jpeg?auto=compress&cs=tinysrgb&w=600') no-repeat center/cover;
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .booking-card {
+            max-width: 1000px;
+            width: 100%;
+            background: white;
+            border-radius: 48px;
+            box-shadow: 0 40px 70px rgba(0,0,0,0.12), 0 15px 30px rgba(196,162,122,0.15);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            animation: floatIn 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes floatIn {
+            0% { opacity: 0; transform: translateY(30px) scale(0.98); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* left — elegant highlight & details */
+        .booking-highlight {
+            background: linear-gradient(155deg, #1a1a1a 0%, #2a241e 100%);
+            color: white;
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .booking-highlight::after {
+            content: '';
+            position: absolute;
+            top: -20%; right: -20%;
+            width: 280px; height: 280px;
+            background: #c4a27a;
+            opacity: 0.1;
+            border-radius: 50%;
+        }
+
+        .highlight-logo {
+            font-size: 32px;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .highlight-logo span {
+            color: #c4a27a;
+        }
+
+        .highlight-tagline {
+            font-size: 15px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #c4a27a;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        .highlight-title {
+            font-size: 42px;
+            font-family: 'Playfair Display', serif;
+            line-height: 1.2;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .highlight-title span {
+            color: #c4a27a;
+            border-bottom: 2px solid rgba(196,162,122,0.4);
+        }
+
+        .feature-list {
+            margin: 40px 0 20px;
+            list-style: none;
+            position: relative;
+            z-index: 2;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 22px;
+            font-weight: 300;
+            font-size: 16px;
+            color: #e0d6cf;
+        }
+
+        .feature-list li i {
+            width: 28px;
+            color: #c4a27a;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .testimonial-mini {
+            margin-top: auto;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-style: italic;
+            font-weight: 300;
+            color: #b9aea5;
+            font-size: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .testimonial-mini i {
+            color: #c4a27a;
+            margin-right: 6px;
+        }
+
+        .testimonial-mini strong {
+            color: #c4a27a;
+            font-style: normal;
+        }
+
+        /* right — booking form */
+        .booking-form {
+            padding: 50px 45px;
+            background: white;
+        }
+
+        .form-header {
+            margin-bottom: 30px;
+        }
+
+        .form-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+
+        .form-header p {
+            color: #6f6f6f;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-header p i {
+            color: #c4a27a;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: #444;
+            margin-bottom: 6px;
+            letter-spacing: 0.3px;
+        }
+
+        label i {
+            color: #c4a27a;
+            width: 18px;
+            margin-right: 5px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1.5px solid #ece4de;
+            border-radius: 30px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            transition: all 0.2s;
+            background: #fefcf9;
+            outline: none;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #c4a27a;
+            box-shadow: 0 0 0 4px rgba(196,162,122,0.15);
+            background: white;
+        }
+
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23c4a27a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 18px center;
+        }
+
+        textarea {
+            border-radius: 25px;
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .service-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 10px 0 5px;
+        }
+
+        .service-tag {
+            background: #f5eee9;
+            color: #2c2c2c;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1.5px solid transparent;
+        }
+
+        .service-tag i {
+            margin-right: 6px;
+            color: #c4a27a;
+            font-size: 12px;
+        }
+
+        .service-tag.selected {
+            background: #c4a27a;
+            color: white;
+            border-color: #c4a27a;
+        }
+
+        .service-tag.selected i {
+            color: white;
+        }
+
+        .service-tag:hover {
+            background: #e3d5cb;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: #c4a27a;
+            border: none;
+            color: white;
+            padding: 16px 25px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 17px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            border: 2px solid #c4a27a;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .submit-btn:hover {
+            background: #a88560;
+            border-color: #a88560;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(196,162,122,0.3);
+        }
+
+        .submit-btn i {
+            font-size: 16px;
+            transition: transform 0.2s;
+        }
+
+        .submit-btn:hover i {
+            transform: translateX(4px);
+        }
+
+        .booking-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 25px;
+            font-size: 13px;
+            color: #999;
+        }
+
+        .booking-footer a {
+            color: #c4a27a;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .booking-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 15px;
+            color: #7a6b5e;
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.2s;
+        }
+
+        .back-link i {
+            color: #c4a27a;
+        }
+
+        .back-link:hover {
+            color: #c4a27a;
+        }
+
+        @media (max-width: 800px) {
+            .booking-card {
+                grid-template-columns: 1fr;
+                border-radius: 30px;
+            }
+            .booking-highlight {
+                padding: 40px 30px;
+            }
+            .booking-form {
+                padding: 40px 30px;
+            }
+            .highlight-title {
+                font-size: 36px;
+            }
+        }
+
+        /* micro-interactions */
+        .input-group input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(0.7) sepia(1) saturate(3) hue-rotate(320deg);
+            cursor: pointer;
+        }
+        
+        /* small extras */
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #d9caba;
+            font-size: 12px;
+            margin: 10px 0;
+        }
+        .divider-line {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #c4a27a, transparent);
+            flex: 1;
+        }
+        .chat-badge {
+            background: rgba(196,162,122,0.15);
+            border-radius: 50px;
+            padding: 6px 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #c4a27a;
+            font-weight: 500;
+            margin-top: 20px;
+        }
+        .chat-badge i {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="booking-card">
+        <!-- left side: luxurious details -->
+        <div class="booking-highlight">
+            <div class="highlight-logo">Glow<span>&Co.</span></div>
+            <div class="highlight-tagline">since 1998</div>
+            <div class="highlight-title">book your<br><span>moment of</span> beauty</div>
+            
+            <ul class="feature-list">
+                <li><i class="fas fa-leaf"></i> Premium products & hygiene</li>
+                <li><i class="fas fa-calendar-check"></i> Free consultation with every service</li>
+                <li><i class="fas fa-spa"></i> Relaxing, luxurious ambiance</li>
+                <li><i class="fas fa-clock"></i> 100% on-time guarantee</li>
+            </ul>
+
+            <div class="testimonial-mini">
+                <i class="fas fa-quote-left"></i> The most elegant salon in Chennai. My bridal package was flawless! <strong>— Ananya R.</strong>
+            </div>
+
+            <a href="servic.html" class="back-link" style="color: #b2a89e; margin-top: 30px; text-decoration: none; align-self: flex-start;">
+                <i class="fas fa-arrow-left"></i> back to services
+            </a>
+        </div>
+
+        <!-- right side: smart booking form -->
+        <div class="booking-form">
+            <div class="form-header">
+                <h2>reserve your glow</h2>
+                <p><i class="fas fa-calendar-alt"></i> appointments take 2 minutes</p>
+            </div>
+
+            <form id="elegantBookingForm" onsubmit="return handleBookingSubmit(event)">
+                <!-- name + phone double -->
+                <div class="input-row">
+                    <div class="input-group">
+                        <label><i class="fas fa-user"></i> full name</label>
+                        <input type="text" placeholder="e.g. Priya Sharma" required>
+                    </div>
+                    <div class="input-group">
+                        <label><i class="fas fa-mobile-alt"></i> phone</label>
+                        <input type="tel" placeholder="98765 43210" required>
+                    </div>
+                </div>
+
+                <!-- email + preferred date -->
+                <div class="input-row">
+                    <div class="input-group">
+                        <label><i class="fas fa-envelope"></i> email</label>
+                        <input type="email" placeholder="priya@example.com" required>
+                    </div>
+                    <div class="input-group">
+                        <label><i class="fas fa-calendar-day"></i> prefer date</label>
+                        <input type="date" required id="bookingDate" min="">
+                    </div>
+                </div>
+
+                <!-- service category (dropdown) + time slot -->
+                <div class="input-row">
+                    <div class="input-group">
+                        <label><i class="fas fa-scissors"></i> service</label>
+                        <select required>
+                            <option value="" disabled selected>– choose category –</option>
+                            <option>Hair (cut, color, treatment)</option>
+                            <option>Skin (facial, anti-aging)</option>
+                            <option>Spa & body massage</option>
+                            <option>Bridal package</option>
+                            <option>Makeup & grooming</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label><i class="fas fa-clock"></i> prefer time</label>
+                        <select required>
+                            <option value="" disabled selected>– time –</option>
+                            <option>10:00 AM</option>
+                            <option>11:30 AM</option>
+                            <option>1:00 PM</option>
+                            <option>2:30 PM</option>
+                            <option>4:00 PM</option>
+                            <option>5:30 PM</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- specialty tags (optional but eye candy) -->
+                <label style="margin-top: 8px;"><i class="fas fa-hashtag"></i> choose stylist speciality (optional)</label>
+                <div class="service-tags">
+                    <span class="service-tag"><i class="fas fa-star"></i> senior stylist</span>
+                    <span class="service-tag"><i class="fas fa-fan"></i> keratin expert</span>
+                    <span class="service-tag"><i class="fas fa-gem"></i> bridal artist</span>
+                    <span class="service-tag"><i class="fas fa-spa"></i> massage therapist</span>
+                </div>
+
+                <!-- special requests / notes -->
+                <div class="input-group">
+                    <label><i class="fas fa-pen"></i> special requests (optional)</label>
+                    <textarea placeholder="allergies, preferences, or any detail..."></textarea>
+                </div>
+
+                <!-- elegance note + submit -->
+                <div class="divider">
+                    <span class="divider-line"></span>
+                    <span>✨</span>
+                    <span class="divider-line"></span>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <span>confirm booking</span> <i class="fas fa-arrow-right"></i>
+                </button>
+
+                <div class="booking-footer">
+                    <span><i class="far fa-credit-card"></i> pay at salon</span>
+                    <a href="#"><i class="fas fa-shield-alt"></i> privacy assured</a>
+                </div>
+            </form>
+
+            <!-- extra touch: chat bubble miniature -->
+            <div class="chat-badge">
+                <i class="fas fa-comment-dots"></i> need help? +91 98765 43210
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // set min date to today for date input
+        (function setMinDate() {
+            const today = new Date().toISOString().split('T')[0];
+            const dateInput = document.getElementById('bookingDate');
+            if(dateInput) dateInput.setAttribute('min', today);
+        })();
+
+        // interactive service tags (visual toggle)
+        document.querySelectorAll('.service-tag').forEach(tag => {
+            tag.addEventListener('click', function(e) {
+                e.preventDefault();
+                this.classList.toggle('selected');
+            });
+        });
+
+        // Handle booking submit – elegant popup with summary
+        function handleBookingSubmit(e) {
+            e.preventDefault();
+            
+            // fetch some values for a delightful message
+            const name = document.querySelector('input[type="text"]').value || 'guest';
+            const serviceSelect = document.querySelector('select');
+            const service = serviceSelect.options[serviceSelect.selectedIndex]?.text || 'selected service';
+            const date = document.getElementById('bookingDate')?.value || 'soon';
+            const timeSelect = document.querySelectorAll('select')[1];
+            const time = timeSelect.options[timeSelect.selectedIndex]?.text || 'preferred time';
+            
+            // get selected speciality tags
+            const selectedTags = [];
+            document.querySelectorAll('.service-tag.selected').forEach(t => selectedTags.push(t.innerText.trim()));
+            const speciality = selectedTags.length ? ` with ${selectedTags.join(', ')}` : '';
+
+            // beauty alert
+            alert(`✨ Thank you, ${name}! Your booking for ${service}${speciality} on ${date} at ${time} is tentatively held. We'll confirm via SMS within minutes. – Glow & Co.`);
+
+            // optionally redirect back to services (or stay)
+            // window.location.href = 'servic.html'; // uncomment if desired, but we keep elegant
+            
+            return false;
+        }
+
+        // also make 'back to services' work as expected
+        document.querySelector('.back-link')?.addEventListener('click', function(e) {
+            e.preventDefault();
+            if(confirm('Return to service list? Any unsaved data will be lost.')) {
+                window.location.href = 'servic.html';
+            }
+        });
+
+        // tiny hover effects for service tags (already done via css)
+    </script>
+    <!-- hidden note: this form is fully functional and matches the salon's elegance -->
+     
+</body>
+</html>

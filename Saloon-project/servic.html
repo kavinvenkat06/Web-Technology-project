@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | Glow & Co. Salon</title>
+    <!-- Add these after your existing CSS links -->
+<link rel="stylesheet" href="style.css">
+<!-- Add these after your existing CSS links -->
+<link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #1a1a1a;
+            background: #fdf8f5;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 80px;
+            background: white;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            color: #1a1a1a;
+        }
+
+        .logo span {
+            color: #c4a27a;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1a1a1a;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #c4a27a;
+        }
+
+        .book-btn {
+            background: #c4a27a;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .book-btn:hover {
+            background: #a88560;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(196,162,122,0.2);
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #c4a27a, #a88560);
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header h1 {
+            font-size: 56px;
+            margin-bottom: 15px;
+            animation: fadeInUp 0.8s ease;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            opacity: 0.9;
+            animation: fadeInUp 0.8s ease 0.1s both;
+        }
+
+        .services-nav {
+            background: white;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 80px;
+            z-index: 90;
+        }
+
+        .category-filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 12px 30px;
+            border: none;
+            background: #f5f5f5;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+            font-size: 14px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .category-btn.active, .category-btn:hover {
+            background: #c4a27a;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(196,162,122,0.2);
+        }
+
+        .services-showcase {
+            padding: 80px;
+            background: #fdf8f5;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .service-category {
+            margin-bottom: 80px;
+            scroll-margin-top: 150px;
+        }
+
+        .category-title {
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: #1a1a1a;
+            position: relative;
+            padding-left: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .category-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 5px;
+            height: 40px;
+            background: #c4a27a;
+            border-radius: 5px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card-detailed {
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .service-card-detailed:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 50px rgba(196,162,122,0.15);
+        }
+
+        .service-image {
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            transition: transform 0.5s;
+        }
+
+        .service-card-detailed:hover .service-image {
+            transform: scale(1.05);
+        }
+
+        .service-overlay {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 8px 15px;
+            border-radius: 25px;
+            font-weight: 600;
+            color: #c4a27a;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            z-index: 2;
+        }
+
+        .service-details {
+            padding: 25px;
+        }
+
+        .service-details h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .service-details p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .service-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .duration {
+            color: #888;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: 600;
+            color: #c4a27a;
+        }
+
+        .book-service-btn {
+            width: 100%;
+            padding: 12px;
+            background: transparent;
+            border: 2px solid #c4a27a;
+            color: #c4a27a;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 15px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .book-service-btn:hover {
+            background: #c4a27a;
+            color: white;
+        }
+
+        .bridal-special {
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            color: white;
+            padding: 80px;
+            border-radius: 40px;
+            margin-top: 50px;
+        }
+
+        .bridal-special h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .bridal-special h2 span {
+            color: #c4a27a;
+        }
+
+        .bridal-special p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .bridal-packages {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .bridal-package {
+            background: rgba(255,255,255,0.1);
+            border-radius: 25px;
+            padding: 40px 30px;
+            backdrop-filter: blur(10px);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .bridal-package:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.15);
+        }
+
+        .package-icon {
+            font-size: 48px;
+            color: #c4a27a;
+            margin-bottom: 20px;
+        }
+
+        .package-price {
+            font-size: 32px;
+            font-weight: 700;
+            color: #c4a27a;
+            margin: 20px 0;
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 80px 20px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3, .footer-section h4 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 20px;
+        }
+
+        .footer-section h3 span {
+            color: #c4a27a;
+        }
+
+        .footer-section p {
+            color: #999;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #999;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #c4a27a;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: #c4a27a;
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #999;
+            font-size: 14px;
+        }
+
+        .chat-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #c4a27a;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(196,162,122,0.3);
+            transition: all 0.3s;
+            z-index: 99;
+        }
+
+        .chat-widget:hover {
+            transform: scale(1.1);
+            background: #a88560;
+        }
+
+        .chat-tooltip {
+            position: absolute;
+            right: 70px;
+            background: white;
+            color: #1a1a1a;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            white-space: nowrap;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s;
+        }
+
+        .chat-widget:hover .chat-tooltip {
+            opacity: 1;
+            right: 80px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-links {
+                gap: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .services-showcase {
+                padding: 40px 20px;
+            }
+            
+            .bridal-packages {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-header h1 {
+                font-size: 36px;
+            }
+            
+            .bridal-special {
+                padding: 40px 20px;
+            }
+            
+            footer {
+                padding: 40px 20px 20px;
+            }
+            
+            .category-filters {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .category-btn {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Glow<span>&Co.</span></div>
+        <div class="nav-links">
+            <a href="home.html">Home</a>
+            <a href="servic.html" class="active">Services</a>
+            <a href="Franchise.html">Franchise</a>
+            <a href="Academy.html">Academy</a>
+            <a href="Contact (2).html">Contact</a>
+            <a href="about.html">About</a>
+        </div>
+        <button class="book-btn" onclick="window.location.href='contact.html'">Book Appointment</button>
+    </nav>
+
+    <section class="page-header">
+        <h1>Our Services</h1>
+        <p>Luxury treatments tailored just for you</p>
+    </section>
+
+    <section class="services-nav">
+        <div class="category-filters">
+            <button class="category-btn active" data-category="all">All Services</button>
+            <button class="category-btn" data-category="hair">Hair</button>
+            <button class="category-btn" data-category="skin">Skin</button>
+            <button class="category-btn" data-category="bridal">Bridal</button>
+            <button class="category-btn" data-category="spa">Spa & Body</button>
+        </div>
+    </section>
+
+    <section class="services-showcase">
+        <!-- Hair Services -->
+        <div class="service-category" id="hair">
+            <h2 class="category-title">Hair Styling & Care</h2>
+            <div class="services-grid">
+                <div class="service-card-detailed">
+                    <div class="service-image" style="background-image: url('https://images.pexels.com/photos/3993449/pexels-photo-3993449.jpeg?auto=compress&cs=tinysrgb&w=600')">
+                        <span class="service-overlay">Popular</span>
+                    </div>
+                    <div class="service-details">
+                        <h3>Precision Haircut</h3>
+                        <p>Expert consultation and precision cutting tailored to your face shape and style preferences.</p>
+                        <div class="service-meta">
+                            <span class="duration"><i class="far fa-clock"></i> 45 mins</span>
+                            <span class="price">₹899</span>
+                        </div>
+                        <button class="book-service-btn">Book Now</button>
+                    </div>
+                </div>
+                <div class="service-card-detailed">
+                    <div class="service-image" style="background-image: url('https://images.pexels.com/photos/5069603/pexels-photo-5069603.jpeg?auto=compress&cs=tinysrgb&w=600')">
+                        <span class="service-overlay">Trending</span>
+                    </div>
+                    <div class="service-details">
+                        <h3>Hair Color & Highlights</h3>
+                        <p>Professional coloring with premium products for vibrant, long-lasting results.</p>
+                        <div class="service-meta">
+                            <span class="duration"><i class="far fa-clock"></i> 2 hrs</span>
+                            <span class="price">₹2,499</span>
+                        </div>
+                        <button class="book-service-btn">Book Now</button>
+                    </div>
+                </div>
+                <div class="service-card-detailed">
+                    <div class="service-image" style="background-image: url('https://images.pexels.com/photos/7533320/pexels-photo-7533320.jpeg?auto=compress&cs=tinysrgb&w=600')">
+                        <span class="service-overlay">Luxury</span>
+                    </div>
+                    <div class="service-details">
+                        <h3>Keratin Treatment</h3>
+                        <p>Advanced smoothing treatment for frizz-free, manageable hair.</p>
+                        <div class="service-meta">
+                            <span class="duration"><i class="far fa-clock"></i> 3 hrs</span>
+                            <span class="price">₹4,999</span>
+                        </div>
+                        <button class="book-service-btn">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skin Services -->
+        <div class="service-category" id="skin">
+            <h2 class="category-title">Skin Care & Facials</h2>
+            <div class="services-grid">
+                
+                <div class="service-card-detailed">
+                    <div class="service-image" style="background-image: url('https://images.pexels.com/photos/5076519/pexels-photo-5076519.jpeg?auto=compress&cs=tinysrgb&w=600')">
+                        <span class="service-overlay">Premium</span>
+                    </div>
+                    <div class="service-details">
+                        <h3>Anti-Aging Treatment</h3>
+                        <p>Advanced therapies to reduce fine lines and restore youthfulness.</p>
+                        <div class="service-meta">
+                            <span class="duration"><i class="far fa-clock"></i> 75 mins</span>
+                            <span class="price">₹3,499</span>
+                        </div>
+                        <button class="book-service-btn">Book Now</button>
+                    </div>
+                </div>
+                <div class="service-card-detailed">
+                    <div class="service-image" style="background-image: url('https://images.pexels.com/photos/3764019/pexels-photo-3764019.jpeg?auto=compress&cs=tinysrgb&w=600')">
+                        <span class="service-overlay">Specialized</span>
+                    </div>
+                    <div class="service-details">
+                        <h3>Acne Clear Treatment</h3>
+                        <p>Specialized treatment for acne-prone skin with deep cleansing.</p>
+                        <div class="service-meta">
+                            <span class="duration"><i class="far fa-clock"></i> 60 mins</span>
+                            <span class="price">₹2,299</span>
+                        </div>
+                        <button class="book-service-btn">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Spa Services -->
+        <div class="service-category" id="spa">
+            <h2 class="category-title">Spa & Body</h2>
+            <div class="services-grid">
+                <div class="service-card-detailed">
+                    <div class="service-image" style="background-image: url('https://images.pexels.com/photos/4210586/pexels-photo-4210586.jpeg?auto=compress&cs=tinysrgb&w=600')">
+                        <span class="service-overlay">Relaxing</span>
+                    </div>
+                    <div class="service-details">
+                        <h3>Aromatherapy Massage</h3>
+                        <p>Relaxing massage with essential oils to rejuvenate your body and mind.</p>
+                        <div class="service-meta">
+                            <span class="duration"><i class="far fa-clock"></i> 60 mins</span>
+                            <span class="price">₹2,499</span>
+                        </div>
+                        <button class="book-service-btn">Book Now</button>
+                    </div>
+                </div>
+                <div class="service-card-detailed">
+                    <div class="service-image" style="background-image: url('https://images.pexels.com/photos/5076525/pexels-photo-5076525.jpeg?auto=compress&cs=tinysrgb&w=600')">
+                        <span class="service-overlay">Glowing</span>
+                    </div>
+                    <div class="service-details">
+                        <h3>Body Scrub & Polish</h3>
+                        <p>Exfoliating treatment for smooth, glowing skin.</p>
+                        <div class="service-meta">
+                            <span class="duration"><i class="far fa-clock"></i> 45 mins</span>
+                            <span class="price">₹1,999</span>
+                        </div>
+                        <button class="book-service-btn">Book Now</button>
+                    </div>
+                </div>
+                <div class="service-card-detailed">
+                    <div class="service-image" style="background-image: url('https://images.pexels.com/photos/3779704/pexels-photo-3779704.jpeg?auto=compress&cs=tinysrgb&w=600')">
+                        <span class="service-overlay">Therapeutic</span>
+                    </div>
+                    <div class="service-details">
+                        <h3>Hot Stone Massage</h3>
+                        <p>Therapeutic massage using heated stones for deep relaxation.</p>
+                        <div class="service-meta">
+                            <span class="duration"><i class="far fa-clock"></i> 90 mins</span>
+                            <span class="price">₹3,499</span>
+                        </div>
+                        <button class="book-service-btn">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bridal Special Section -->
+        <div class="bridal-special" id="bridal">
+            <h2>Exclusively <span>Bridal</span></h2>
+            <p>Make your special day unforgettable with our premium bridal packages</p>
+            <div class="bridal-packages">
+                <div class="bridal-package">
+                    <div class="package-icon"><i class="fas fa-crown"></i></div>
+                    <h3>Bridal Makeover</h3>
+                    <p>Complete bridal package including hair, makeup, and draping</p>
+                    <div class="package-price">₹15,999</div>
+                    <button class="book-service-btn" style="background: transparent; color: white; border-color: white;">Enquire</button>
+                </div>
+                <div class="bridal-package">
+                    <div class="package-icon"><i class="fas fa-heart"></i></div>
+                    <h3>Bridal Party</h3>
+                    <p>For bride + 4 bridesmaids with special discounts</p>
+                    <div class="package-price">₹45,999</div>
+                    <button class="book-service-btn" style="background: transparent; color: white; border-color: white;">Enquire</button>
+                </div>
+                <div class="bridal-package">
+                    <div class="package-icon"><i class="fas fa-gem"></i></div>
+                    <h3>Groom's Package</h3>
+                    <p>Grooming, haircut, and facial for the groom</p>
+                    <div class="package-price">₹6,999</div>
+                    <button class="book-service-btn" style="background: transparent; color: white; border-color: white;">Enquire</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Glow<span>&Co.</span></h3>
+                <p>Redefining beauty with elegance and expertise since 1998.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="home.html">Home</a>
+                <a href="servic.html">Services</a>
+                <a href="Franchise.html">Franchise</a>
+                <a href="Academy.html">Academy</a>
+                <a href="Contact (2).html">Contact</a>
+                <a href="about.html">About</a>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <a href="#hair">Hair Styling</a>
+                <a href="#skin">Skin Care</a>
+                <a href="#bridal">Bridal</a>
+                <a href="#spa">Spa</a>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                <p><i class="fas fa-envelope"></i> hello@glowandco.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Chennai, India</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Glow & Co. Salon. All rights reserved. | College Project</p>
+        </div>
+    </footer>
+
+    <div class="chat-widget">
+        <i class="fas fa-comment"></i>
+        <span class="chat-tooltip">Need help? Chat with us!</span>
+    </div>
+
+    <script>
+        // Category filtering
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const category = this.dataset.category;
+                if(category === 'all') {
+                    document.querySelectorAll('.service-category').forEach(cat => cat.style.display = 'block');
+                    document.querySelector('.bridal-special').style.display = 'block';
+                } else {
+                    document.querySelectorAll('.service-category').forEach(cat => {
+                        if(cat.id === category) {
+                            cat.style.display = 'block';
+                        } else {
+                            cat.style.display = 'none';
+                        }
+                    });
+                    
+                    // Show/hide bridal special section based on category
+                    if(category === 'bridal') {
+                        document.querySelector('.bridal-special').style.display = 'block';
+                    } else {
+                        document.querySelector('.bridal-special').style.display = 'none';
+                    }
+                }
+            });
+        });
+
+        // Smooth scroll for category links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Book now button functionality
+        document.querySelectorAll('.book-service-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const serviceName = this.closest('.service-details')?.querySelector('h3')?.textContent || 'Bridal Package';
+                alert(`Booking initiated for: ${serviceName}\nYou will be redirected to the booking page.`);
+                window.location.href = 'contact.html';
+            });
+        });
+
+        // Chat widget click
+        document.querySelector('.chat-widget').addEventListener('click', function() {
+            alert('Chat support is available 24/7. How can we help you today?');
+        });
+    </script>
+    <!-- Add custom cursor elements -->
+<div class="cursor"></div>
+<div class="cursor-dot"></div>
+
+<!-- Add loader -->
+<div class="loader">
+    <div class="loader-content">
+        <div class="loader-logo">Glow<span>&Co.</span></div>
+        <div class="loader-spinner"></div>
+    </div>
+</div>
+
+<!-- Before closing body tag, add this -->
+<div class="loader"></div>
+<script src="scrpit.js"></script>
+</body>
+</html>
